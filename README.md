@@ -4,4 +4,12 @@ Responsive dynamic login screen for desktop, tablet, and mobile.
 
 ## Run locally
 
-Open `index.html` in a browser.
+```bash
+npm install
+npm run dev
+```
+
+## Stack
+
+- React
+- Vite
