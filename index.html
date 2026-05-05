@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Northstar Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="ambient-panel" aria-hidden="true">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="grid"></div>
+      </section>
+
+      <section class="login-layout" aria-label="Login experience">
+        <aside class="brand-panel">
+          <p class="eyebrow">Secure Workspace</p>
+          <h1>Northstar keeps your team in flow.</h1>
+          <p class="intro">
+            A calm, responsive sign-in experience designed to feel equally at
+            home on mobile, tablet, and desktop.
+          </p>
+
+          <div class="status-card">
+            <p class="status-label">Right now</p>
+            <p class="status-copy" id="greeting">Good morning, let's get started.</p>
+          </div>
+
+          <div class="feature-list">
+            <article>
+              <span>01</span>
+              <p>Adaptive layout that shifts smoothly across screen sizes.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <p>Clear hierarchy, touch-friendly controls, and accessible states.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <p>Subtle motion and feedback to make the screen feel alive.</p>
+            </article>
+          </div>
+        </aside>
+
+        <section class="form-panel">
+          <div class="form-panel__inner">
+            <div class="form-heading">
+              <p class="badge">Member Login</p>
+              <h2>Sign in to continue</h2>
+              <p>
+                Use your work email and password to access your dashboard.
+              </p>
+            </div>
+
+            <form class="login-form" id="loginForm" novalidate>
+              <label class="field">
+                <span>Email</span>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@company.com"
+                  autocomplete="email"
+                  required
+                />
+                <small class="field-message" id="emailMessage"></small>
+              </label>
+
+              <label class="field">
+                <span>Password</span>
+                <div class="password-field">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    minlength="8"
+                    required
+                  />
+                  <button
+                    class="toggle-password"
+                    id="togglePassword"
+                    type="button"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                  >
+                    Show
+                  </button>
+                </div>
+                <small class="field-message" id="passwordMessage"></small>
+              </label>
+
+              <div class="form-row">
+                <label class="remember-me">
+                  <input type="checkbox" name="remember" />
+                  <span>Keep me signed in</span>
+                </label>
+                <a href="/" class="text-link">Forgot password?</a>
+              </div>
+
+              <button class="submit-button" type="submit">Enter workspace</button>
+
+              <p class="form-note" id="formNote" aria-live="polite">
+                Protected by enterprise-grade authentication.
+              </p>
+            </form>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
