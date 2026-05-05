@@ -1,17 +1,5 @@
 import { useEffect, useState } from "react";
 
-const activityFeed = [
-  { label: "SSO Relay", value: "Healthy", detail: "2.1s median handshake" },
-  { label: "Threat Scan", value: "Active", detail: "Monitoring 14 regions" },
-  { label: "Team Access", value: "128 seats", detail: "11 pending invites" }
-];
-
-const highlights = [
-  "Adaptive layout tuned for desktop, tablet, and mobile.",
-  "Clear interaction states with lightweight validation feedback.",
-  "A React component base that is ready for real authentication wiring."
-];
-
 function getGreeting() {
   const hour = new Date().getHours();
 
@@ -87,63 +75,27 @@ export default function App() {
       </section>
 
       <section className="login-layout" aria-label="Login experience">
-        <aside className="brand-panel">
-          <div className="brand-copy">
-            <p className="eyebrow">Northstar Access</p>
-            <h1>Turn login into a launch moment.</h1>
-            <p className="intro">
-              This React version gives the screen a stronger sense of product:
-              more structured motion, clearer component boundaries, and a better
-              foundation for real auth flows.
-            </p>
-          </div>
-
-          <div className="status-card">
-            <div>
-              <p className="status-label">Live greeting</p>
-              <p className="status-copy">{greeting}</p>
-            </div>
-            <div className="orbit-indicator" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-
-          <div className="activity-grid" aria-label="Platform status">
-            {activityFeed.map((item) => (
-              <article className="activity-card" key={item.label}>
-                <p>{item.label}</p>
-                <strong>{item.value}</strong>
-                <span>{item.detail}</span>
-              </article>
-            ))}
-          </div>
-
-          <div className="feature-list">
-            {highlights.map((item, index) => (
-              <article key={item}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{item}</p>
-              </article>
-            ))}
-          </div>
-        </aside>
-
-        <section className="form-panel">
+        <section className="form-panel form-panel--minimal">
           <div className="form-panel__inner">
-            <div className="form-heading">
-              <p className="badge">Member Login</p>
-              <h2>Sign in to continue</h2>
-              <p>
-                Use your work email and password to enter the workspace.
-              </p>
+            <p className="eyebrow eyebrow--center">Northstar Access</p>
+
+            <div className="member-badge member-badge--minimal" aria-label="Member profile preview">
+              <div className="member-badge__avatar" aria-hidden="true">
+                <span className="member-badge__pulse"></span>
+                <span className="member-badge__orbit"></span>
+                <span className="member-badge__ring"></span>
+                <span className="member-badge__presence"></span>
+                <span className="member-badge__initials">AN</span>
+              </div>
+              <div className="member-badge__copy">
+                <strong>Avery North</strong>
+                <span>{greeting}</span>
+              </div>
             </div>
 
-            <div className="trust-row" aria-label="Security highlights">
-              <span>Device aware</span>
-              <span>Biometric ready</span>
-              <span>Role based</span>
+            <div className="form-heading form-heading--minimal">
+              <h2>Sign in</h2>
+              <p>Use your work email and password to enter the workspace.</p>
             </div>
 
             <form className="login-form" onSubmit={handleSubmit} noValidate>
@@ -206,10 +158,10 @@ export default function App() {
                 Enter workspace
               </button>
 
-              <p className="form-note" aria-live="polite">
+              <p className="form-note form-note--minimal" aria-live="polite">
                 {submitted && canSubmit
                   ? "Looking good. This React screen is ready to connect to real authentication."
-                  : "Protected by enterprise-grade authentication and adaptive access rules."}
+                  : "Protected by enterprise-grade authentication."}
               </p>
             </form>
           </div>
