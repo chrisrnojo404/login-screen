@@ -210,7 +210,24 @@ export default function App() {
               <p className="form-note form-note--minimal" aria-live="polite">
                 {submitted && canSubmit
                   ? "Looking good. This React screen is ready to connect to real authentication."
-                  : "Developed by ChrisRNojo404"}
+                  : (
+                    <>
+                      Developed by{" "}
+                      <span className="footer-signoff">
+                        <svg
+                          aria-hidden="true"
+                          className="footer-signoff__icon"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M8 0C3.58 0 0 3.67 0 8.2c0 3.62 2.29 6.69 5.47 7.78.4.08.55-.18.55-.39 0-.19-.01-.82-.01-1.48-2.01.38-2.53-.5-2.69-.96-.09-.24-.48-.97-.82-1.16-.28-.16-.68-.55-.01-.56.63-.01 1.08.59 1.23.84.72 1.26 1.87.9 2.33.69.07-.53.28-.9.5-1.11-1.78-.21-3.64-.92-3.64-4.08 0-.9.31-1.64.82-2.22-.08-.21-.36-1.06.08-2.2 0 0 .67-.22 2.2.85A7.45 7.45 0 0 1 8 3.68c.68 0 1.37.09 2.01.27 1.53-1.07 2.2-.85 2.2-.85.44 1.14.16 1.99.08 2.2.51.58.82 1.31.82 2.22 0 3.17-1.87 3.87-3.65 4.08.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.47.55.39A8.23 8.23 0 0 0 16 8.2C16 3.67 12.42 0 8 0Z"
+                          />
+                        </svg>
+                        <span>ChrisRNojo404</span>
+                      </span>
+                    </>
+                  )}
               </p>
             </form>
           </div>

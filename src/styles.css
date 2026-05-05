@@ -254,7 +254,7 @@ button {
 
 .form-logo {
   display: block;
-  width: min(100%, 13.25rem);
+  width: min(100%, 11.75rem);
   margin: 0 auto 1.4rem;
   object-fit: contain;
   filter:
@@ -269,7 +269,7 @@ button {
 
 .eyebrow--center {
   text-align: center;
-  color: #5f7898;
+  color: #b24d4d;
 }
 
 .form-heading h2 {
@@ -314,8 +314,8 @@ button {
 }
 
 .field input:focus {
-  border-color: rgba(95, 120, 152, 0.55);
-  box-shadow: 0 0 0 4px rgba(95, 120, 152, 0.14);
+  border-color: rgba(178, 77, 77, 0.55);
+  box-shadow: 0 0 0 4px rgba(178, 77, 77, 0.14);
   transform: translateY(-1px);
 }
 
@@ -333,7 +333,7 @@ button {
   right: 0.75rem;
   transform: translateY(-50%);
   background: transparent;
-  color: #5f7898;
+  color: #b24d4d;
   font-weight: 700;
   cursor: pointer;
 }
@@ -365,7 +365,7 @@ button {
 .remember-me input {
   width: 1rem;
   height: 1rem;
-  accent-color: var(--accent-strong);
+  accent-color: #b24d4d;
 }
 
 .text-link {
@@ -382,7 +382,7 @@ button {
   width: 100%;
   padding: 1rem 1.2rem;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #4f6787 0%, #334a68 100%);
+  background: linear-gradient(135deg, #c44848 0%, #8d2f2f 100%);
   color: white;
   font-weight: 700;
   cursor: pointer;
@@ -392,7 +392,7 @@ button {
 .submit-button:hover,
 .submit-button:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 16px 28px rgba(51, 74, 104, 0.24);
+  box-shadow: 0 16px 28px rgba(141, 47, 47, 0.28);
   filter: saturate(1.06);
 }
 
@@ -405,6 +405,21 @@ button {
 
 .form-note--minimal {
   margin-top: 1.1rem;
+}
+
+.footer-signoff {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  vertical-align: baseline;
+}
+
+.footer-signoff__icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+  position: relative;
+  top: 0.08rem;
 }
 
 @keyframes float {
