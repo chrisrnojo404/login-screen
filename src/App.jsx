@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import visionMediaLogo from "./assets/vision-media-logo.png";
 
 function getGreeting() {
   const hour = new Date().getHours();
@@ -135,6 +136,12 @@ export default function App() {
       <section className="login-layout" aria-label="Login experience">
         <section className="form-panel form-panel--minimal">
           <div className="form-panel__inner">
+            <img
+              className="form-logo"
+              src={visionMediaLogo}
+              alt="Vision Media logo"
+            />
+
             <div className="form-heading form-heading--minimal">
               <h2>Sign in</h2>
               <p>{greeting}</p>
