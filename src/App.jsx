@@ -53,15 +53,15 @@ export default function App() {
     function updatePointer(clientX, clientY) {
       const x = clientX / window.innerWidth;
       const y = clientY / window.innerHeight;
-      const rotateX = (y - 0.5) * -10;
-      const rotateY = (x - 0.5) * 10;
 
       shell.style.setProperty("--pointer-x", `${x * 100}%`);
       shell.style.setProperty("--pointer-y", `${y * 100}%`);
       shell.style.setProperty("--pointer-shift-x", `${(x - 0.5) * 36}px`);
       shell.style.setProperty("--pointer-shift-y", `${(y - 0.5) * 36}px`);
-      shell.style.setProperty("--panel-rotate-x", `${rotateX}deg`);
-      shell.style.setProperty("--panel-rotate-y", `${rotateY}deg`);
+      shell.style.setProperty("--avatar-shift-x", `${(x - 0.5) * 6}px`);
+      shell.style.setProperty("--avatar-shift-y", `${(y - 0.5) * 5}px`);
+      shell.style.setProperty("--eye-shift-x", `${(x - 0.5) * 2.4}px`);
+      shell.style.setProperty("--eye-shift-y", `${(y - 0.5) * 1.8}px`);
     }
 
     function handlePointerMove(event) {
@@ -119,6 +119,8 @@ export default function App() {
   return (
     <main className="page-shell" ref={shellRef}>
       <section className="ambient-panel" aria-hidden="true">
+        <div className="workspace-scene"></div>
+        <div className="workspace-overlay"></div>
         <div className="cursor-light"></div>
         <div className="aurora aurora-one"></div>
         <div className="aurora aurora-two"></div>
@@ -133,25 +135,9 @@ export default function App() {
       <section className="login-layout" aria-label="Login experience">
         <section className="form-panel form-panel--minimal">
           <div className="form-panel__inner">
-            <p className="eyebrow eyebrow--center">Northstar Access</p>
-
-            <div className="member-badge member-badge--minimal" aria-label="Member profile preview">
-              <div className="member-badge__avatar" aria-hidden="true">
-                <span className="member-badge__pulse"></span>
-                <span className="member-badge__orbit"></span>
-                <span className="member-badge__ring"></span>
-                <span className="member-badge__presence"></span>
-                <span className="member-badge__initials">AN</span>
-              </div>
-              <div className="member-badge__copy">
-                <strong>Avery North</strong>
-                <span>{greeting}</span>
-              </div>
-            </div>
-
             <div className="form-heading form-heading--minimal">
               <h2>Sign in</h2>
-              <p>Use your work email and password to enter the workspace.</p>
+              <p>{greeting}</p>
             </div>
 
             <form className="login-form" onSubmit={handleSubmit} noValidate>
@@ -217,7 +203,7 @@ export default function App() {
               <p className="form-note form-note--minimal" aria-live="polite">
                 {submitted && canSubmit
                   ? "Looking good. This React screen is ready to connect to real authentication."
-                  : "Protected by enterprise-grade authentication."}
+                  : "Developed by ChrisRNojo404"}
               </p>
             </form>
           </div>
