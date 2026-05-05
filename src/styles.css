@@ -16,6 +16,12 @@
   --radius-xl: 32px;
   --radius-lg: 20px;
   --radius-md: 14px;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --pointer-shift-x: 0px;
+  --pointer-shift-y: 0px;
+  --panel-rotate-x: 0deg;
+  --panel-rotate-y: 0deg;
 }
 
 * {
@@ -61,10 +67,67 @@ button {
   pointer-events: none;
 }
 
+.cursor-light {
+  position: absolute;
+  left: var(--pointer-x);
+  top: var(--pointer-y);
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.14), rgba(103, 198, 255, 0.08) 32%, transparent 68%);
+  transform: translate(-50%, -50%);
+  filter: blur(24px);
+  opacity: 0.85;
+  transition: left 180ms ease-out, top 180ms ease-out;
+}
+
 .glow,
+.aurora,
 .halo {
   position: absolute;
   border-radius: 999px;
+}
+
+.aurora {
+  filter: blur(70px);
+  opacity: 0.42;
+  mix-blend-mode: screen;
+}
+
+.aurora-one {
+  top: 14%;
+  left: -8%;
+  width: 34rem;
+  height: 12rem;
+  background: linear-gradient(90deg, rgba(255, 122, 89, 0.42), rgba(103, 198, 255, 0.18));
+  transform: translate(var(--pointer-shift-x), calc(var(--pointer-shift-y) * -0.35));
+  animation: auroraDrift 16s ease-in-out infinite;
+}
+
+.aurora-two {
+  right: -10%;
+  bottom: 12%;
+  width: 32rem;
+  height: 14rem;
+  background: linear-gradient(90deg, rgba(103, 198, 255, 0.3), rgba(255, 255, 255, 0.06));
+  transform: translate(calc(var(--pointer-shift-x) * -1), calc(var(--pointer-shift-y) * 0.3));
+  animation: auroraDrift 18s ease-in-out infinite reverse;
+}
+
+.radial-wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 58rem;
+  height: 58rem;
+  border-radius: 50%;
+  transform: translate(calc(-50% + (var(--pointer-shift-x) * 0.35)), calc(-50% + (var(--pointer-shift-y) * 0.35)));
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.03) 14%, transparent 15%),
+    radial-gradient(circle, transparent 0 28%, rgba(103, 198, 255, 0.08) 29%, transparent 30%),
+    radial-gradient(circle, transparent 0 42%, rgba(255, 122, 89, 0.08) 43%, transparent 44%);
+  opacity: 0.55;
+  animation: radialSpin 28s linear infinite;
 }
 
 .glow {
@@ -79,6 +142,7 @@ button {
   width: 22rem;
   height: 22rem;
   background: radial-gradient(circle, rgba(255, 122, 89, 0.45), transparent 68%);
+  transform: translate(calc(var(--pointer-shift-x) * 0.45), calc(var(--pointer-shift-y) * -0.3));
 }
 
 .glow-two {
@@ -87,6 +151,7 @@ button {
   width: 28rem;
   height: 28rem;
   background: radial-gradient(circle, rgba(103, 198, 255, 0.34), transparent 70%);
+  transform: translate(calc(var(--pointer-shift-x) * -0.4), calc(var(--pointer-shift-y) * 0.32));
   animation-delay: -4s;
 }
 
@@ -155,9 +220,11 @@ button {
   display: grid;
   place-items: center;
   border-radius: var(--radius-xl);
-  width: min(100%, 30rem);
+  width: min(100%, 34rem);
   background: linear-gradient(180deg, rgba(247, 241, 231, 0.84), rgba(255, 252, 246, 0.94));
   color: var(--text-dark);
+  transform: perspective(1200px) rotateX(var(--panel-rotate-x)) rotateY(var(--panel-rotate-y));
+  transition: transform 220ms ease-out;
 }
 
 .form-panel--minimal {
@@ -165,7 +232,7 @@ button {
 }
 
 .form-panel__inner {
-  width: min(100%, 24rem);
+  width: min(100%, 27rem);
   padding: 2.5rem 2rem;
 }
 
@@ -419,6 +486,31 @@ button {
   }
 }
 
+@keyframes auroraDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(2rem, -1rem, 0) rotate(6deg);
+  }
+}
+
+@keyframes radialSpin {
+  from {
+    transform: translate(calc(-50% + (var(--pointer-shift-x) * 0.35)), calc(-50% + (var(--pointer-shift-y) * 0.35))) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translate(calc(-50% + (var(--pointer-shift-x) * 0.35)), calc(-50% + (var(--pointer-shift-y) * 0.35))) rotate(180deg) scale(1.03);
+  }
+
+  to {
+    transform: translate(calc(-50% + (var(--pointer-shift-x) * 0.35)), calc(-50% + (var(--pointer-shift-y) * 0.35))) rotate(360deg) scale(1);
+  }
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);
@@ -493,6 +585,16 @@ button {
     padding: 1rem;
   }
 
+  .cursor-light {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .radial-wave {
+    width: 42rem;
+    height: 42rem;
+  }
+
   .form-panel__inner {
     padding: 1.5rem;
   }
@@ -516,5 +618,9 @@ button {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+
+  .form-panel {
+    transform: none;
   }
 }

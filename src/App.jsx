@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function getGreeting() {
   const hour = new Date().getHours();
@@ -23,6 +23,7 @@ function validatePassword(value) {
 }
 
 export default function App() {
+  const shellRef = useRef(null);
   const [greeting, setGreeting] = useState(getGreeting);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -38,6 +39,57 @@ export default function App() {
     }, 60000);
 
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const shell = shellRef.current;
+
+    if (!shell) {
+      return undefined;
+    }
+
+    let frameId = 0;
+
+    function updatePointer(clientX, clientY) {
+      const x = clientX / window.innerWidth;
+      const y = clientY / window.innerHeight;
+      const rotateX = (y - 0.5) * -10;
+      const rotateY = (x - 0.5) * 10;
+
+      shell.style.setProperty("--pointer-x", `${x * 100}%`);
+      shell.style.setProperty("--pointer-y", `${y * 100}%`);
+      shell.style.setProperty("--pointer-shift-x", `${(x - 0.5) * 36}px`);
+      shell.style.setProperty("--pointer-shift-y", `${(y - 0.5) * 36}px`);
+      shell.style.setProperty("--panel-rotate-x", `${rotateX}deg`);
+      shell.style.setProperty("--panel-rotate-y", `${rotateY}deg`);
+    }
+
+    function handlePointerMove(event) {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      frameId = window.requestAnimationFrame(() => {
+        updatePointer(event.clientX, event.clientY);
+      });
+    }
+
+    function resetPointer() {
+      updatePointer(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
+    resetPointer();
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerleave", resetPointer);
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerleave", resetPointer);
+    };
   }, []);
 
   const emailIsValid = validateEmail(formState.email);
@@ -65,8 +117,12 @@ export default function App() {
   }
 
   return (
-    <main className="page-shell">
+    <main className="page-shell" ref={shellRef}>
       <section className="ambient-panel" aria-hidden="true">
+        <div className="cursor-light"></div>
+        <div className="aurora aurora-one"></div>
+        <div className="aurora aurora-two"></div>
+        <div className="radial-wave"></div>
         <div className="glow glow-one"></div>
         <div className="glow glow-two"></div>
         <div className="grid"></div>
